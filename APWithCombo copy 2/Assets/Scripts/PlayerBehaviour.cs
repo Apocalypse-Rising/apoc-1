@@ -27,6 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+    public  bool check = false;
 
 
 
@@ -46,7 +47,6 @@ public class PlayerBehaviour : MonoBehaviour
   
     private bool isGrounded()
     {
-        Debug.Log(groundCheck.position);
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
@@ -54,7 +54,11 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (check)
+        {
+            comboGet.comboNum += 1;
+            check = false;
+        }
 
         horizontal = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("speed", horizontal);
@@ -99,7 +103,6 @@ public class PlayerBehaviour : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-        Debug.Log(isGrounded());
 
         if (isGrounded() == true)
         {
@@ -116,7 +119,6 @@ public class PlayerBehaviour : MonoBehaviour
             // Trigger the melee animation
             animator.SetBool("meleeAttack", true);
             hasMeleeAttacked = true;
-            comboGet.comboNum += 1;
 
             // Flip the character if it's facing left      
         }
@@ -141,7 +143,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Enemy" && rb.position.y > collision.contacts[0].point.y)
+        if (collision.collider.tag == "Enemy" && rb.position.y > collision.contacts[0].point.y && !isGrounded())
         {
             comboGet.comboNum += 1;
             Destroy(collision.collider.gameObject);
