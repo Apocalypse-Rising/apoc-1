@@ -66,7 +66,6 @@
     <Compile Include="Assets\Scripts\LavaRise.cs" />
     <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\ComboCount.cs" />
-    <Compile Include="Assets\Scripts\PlayMov.cs" />
     <Compile Include="Assets\Scripts\Sword.cs" />
   </ItemGroup>
   <ItemGroup>

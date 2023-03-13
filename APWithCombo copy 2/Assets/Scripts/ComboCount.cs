@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ComboCount : MonoBehaviour
 {
-    public int comboNum;
+    public int comboNum = 0;
     public Text combo;
     public float startTime;
     public float currentTime;
