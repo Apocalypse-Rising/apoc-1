@@ -58,11 +58,6 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (check)
-        {
-            comboGet.comboNum += 1;
-            check = false;
-        }
         if (knockBackTime <= 0)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
@@ -155,7 +150,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (rb.position.y > collision.contacts[0].point.y && !isGrounded())
             {
-                comboGet.comboNum += 1;
+                check = true;
                 Destroy(collision.collider.gameObject);
             }
             else if (isGrounded())
@@ -163,11 +158,9 @@ public class PlayerBehaviour : MonoBehaviour
                 if (rb.position.x < collision.GetContact(0).point.x)
                 {
                     knockLeft = true;
-                    Debug.Log("Left");
                 } else if (rb.position.x > collision.GetContact(0).point.x)
                 {
                     knockLeft = false;
-                    Debug.Log("Right");
                 }
                 knockBackTime = 0.3f;
             }
@@ -203,7 +196,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (isWallSliding && Input.GetKeyDown(KeyCode.Space))
         {
-            comboGet.comboNum += 1;
+            check = true;
             rb.velocity = new Vector2(rb.velocity.x, 16f);
             isWallSliding = false;
         }
@@ -217,6 +210,11 @@ public class PlayerBehaviour : MonoBehaviour
    
     private void FixedUpdate()
     {
+        if (check)
+        {
+            comboGet.comboNum += 1;
+            check = false;
+        }
         if (knockBackTime <= 0)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);

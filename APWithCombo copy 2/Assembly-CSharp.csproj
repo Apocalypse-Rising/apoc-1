@@ -67,6 +67,8 @@
     <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\ComboCount.cs" />
     <Compile Include="Assets\Scripts\Sword.cs" />
+    <Compile Include="Assets\Scripts\EndLevel.cs" />
+    <Compile Include="Assets\Scripts\Distance.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

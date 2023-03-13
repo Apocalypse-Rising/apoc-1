@@ -22,11 +22,11 @@ public class ComboCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (comboNum > 1 && (currentTime - startTime) < 3 && comboNum > lastNum)
+        if (comboNum > 1 && (currentTime - startTime) < 5 && comboNum > lastNum)
         {
             combo.text = "Combo: " + comboNum + "x";
             startTime = Time.time;
-        } else if (comboNum > 1 && (currentTime - startTime) > 3)
+        } else if (comboNum > 1 && (currentTime - startTime) > 5)
         {
             comboNum = 0;
             combo.text = "";
